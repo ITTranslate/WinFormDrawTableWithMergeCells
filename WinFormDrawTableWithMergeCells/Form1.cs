@@ -24,9 +24,9 @@ namespace WinFormDrawTableWithMergeCells
             var g = e.Graphics;
 
             // 添加合并单元格
-            List<MergeCell> mergeCells = new List<MergeCell>();
-            mergeCells.Add(new MergeCell(1, 2, crossCols: 2));
-            mergeCells.Add(new MergeCell(3, 3, crossRows: 3, crossCols: 2));
+            List<MergeCell> mergeCells = new();
+            mergeCells.Add(new MergeCell(1, 2, CrossCols: 2));
+            mergeCells.Add(new MergeCell(3, 3, CrossRows: 3, CrossCols: 2));
 
             DrawTable(g, 5, 5, 10, 6, mergeCells);
         }
@@ -46,11 +46,11 @@ namespace WinFormDrawTableWithMergeCells
             const int cellH = 24; //单元格高度
 
             // 过滤有效的合并单元格
-            var mcs = mergeCells?.Where(m => m.crossCols > 0 && m.crossRows > 0)
-                ?.Where(m => !(m.crossCols == 1 && m.crossRows == 1))
+            var mcs = mergeCells?.Where(m => m.CrossCols > 0 && m.CrossRows > 0)
+                ?.Where(m => !(m.CrossCols == 1 && m.CrossRows == 1))
                 ?.ToList();
 
-            List<Rectangle> mergeRects = new List<Rectangle>();
+            List<Rectangle> mergeRects = new();
 
             int tmpX, tmpY;
             for (int r = 0; r < rows; r++)
@@ -68,16 +68,16 @@ namespace WinFormDrawTableWithMergeCells
                     int tmpH = cellH;
 
                     // 用于判断当前单元格是否合并单元格的起始单元格
-                    var mc = mcs?.FirstOrDefault(m => m.startRow == r && m.startCol == c); //合并单元格的起始单元格
+                    var mc = mcs?.FirstOrDefault(m => m.StartRow == r && m.StartCol == c); //合并单元格的起始单元格
                     if (mc != null)
                     {
-                        if (mc.crossRows > 1)
+                        if (mc.CrossRows > 1)
                         {
-                            tmpH = mc.crossRows * cellH;
+                            tmpH = mc.CrossRows * cellH;
                         }
-                        if (mc.crossCols > 1)
+                        if (mc.CrossCols > 1)
                         {
-                            tmpW = mc.crossCols * cellW;
+                            tmpW = mc.CrossCols * cellW;
                         }
                     }
 

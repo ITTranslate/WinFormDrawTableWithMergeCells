@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace WinFormDrawTableWithMergeCells
 {
+
     /// <summary>
     /// 合并单元格定义
     /// </summary>
-    public record MergeCell(int startRow, int startCol, int crossRows = 1, int crossCols = 1);
+    public record MergeCell(int StartRow, int StartCol, int CrossRows = 1, int CrossCols = 1);
 
     //public class MergeCell
     //{
